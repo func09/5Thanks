@@ -58,6 +58,10 @@ Kanshabox::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
+  config.action_mailer.default_url_options = { 
+    :host => 'fivethanks.heroku.com'
+  }
+  
   ActionMailer::Base.smtp_settings = {
     :address        => "smtp.sendgrid.net",
     :port           => "25",
