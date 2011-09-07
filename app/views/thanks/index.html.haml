@@ -37,8 +37,10 @@
           %dd.thanks
             %ol
               - for thank in thanks
-                %li
+                %li(data-thank-id='#{thank.id}')
                   %b= "#{thank.what}へ"
+                  %span.destroy(style='display:none;')
+                    %a.btn-destroy(href='#') x
                   %br
                   = thank.message
             .system-message
@@ -70,12 +72,8 @@
                   %p
                     この日もいっぱい良いことがあったね！
                     = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
-      .pagination
-        =# paginate @thanks
   .span6
     %ul
       - for month in @months
         %li
           = link_to month, thanks_path(:m => month)
-      
-
