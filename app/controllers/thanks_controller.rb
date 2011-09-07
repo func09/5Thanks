@@ -1,9 +1,11 @@
+# -*- encoding: utf-8 -*-
 class ThanksController < ApplicationController
+  before_filter :authenticate_user!
   # GET /thanks
   # GET /thanks.json
   def index
-    @dates = Thank.order('date_at DESC').group(:date_at).count
-    @thanks = Thank.filter(params).order('date_at DESC').group_by{|t| t.date_at}
+    @dates = current_user.thanks.order('date_at DESC').group(:date_at).count
+    @thanks = current_user.thanks.filter(params).order('date_at DESC').group_by{|t| t.date_at}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +27,12 @@ class ThanksController < ApplicationController
   # GET /thanks/new
   # GET /thanks/new.json
   def new
-    @thank = Thank.new
+    date = Date.today
+    if params[:date]
+      date = DateTime.parse(params[:date])
+    end
+    
+    @thank = Thank.new :date_at => date
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,11 +48,11 @@ class ThanksController < ApplicationController
   # POST /thanks
   # POST /thanks.json
   def create
-    @thank = Thank.new(params[:thank])
+    @thank = current_user.thanks.build(params[:thank])
 
     respond_to do |format|
       if @thank.save
-        format.html { redirect_to @thank, notice: 'Thank was successfully created.' }
+        format.html { redirect_to thanks_path, notice: '感謝の気持ちが増えました！' }
         format.json { render json: @thank, status: :created, location: @thank }
       else
         format.html { render action: "new" }

@@ -1,0 +1,19 @@
+.page-header
+  %h2 パスワードを忘れた方
+
+.row
+  .span10
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+      = devise_error_messages!
+      
+      %fieldset
+        .clearfix
+          = f.label :email
+          .input
+            = f.email_field :email
+        .actions
+          = f.submit "パスワードを再登録するためのメールを送る", :class => 'btn primary'
+    
+  .span6
+    = render :partial => "devise/shared/links"
+

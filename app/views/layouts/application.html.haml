@@ -18,9 +18,17 @@
           %h3
             %a(href='/')
               5Thanks
-          %ul
-            %li= link_to 'あなたの感謝', thanks_path
-            %li= link_to '新しい感謝', new_thank_path
+          - if user_signed_in?
+            %ul
+              %li= link_to 'あなたの感謝', thanks_path
+              %li= link_to '新しい感謝', new_thank_path
+            %ul.nav.secondary-nav
+              %li= link_to '設定', edit_user_registration_path
+              %li= link_to 'ログアウト', destroy_user_session_path, :method => :delete
+          - else
+            %ul.nav.secondary-nav
+              %li= link_to '新規登録', new_user_registration_path
+              %li= link_to 'ログイン', new_user_session_path
     
     .container(style='margin-top: 40px; padding-top: 10px')
       - flash.each do |name, msg|
@@ -29,3 +37,7 @@
     .container
       .pageContent
         = yield
+    
+    .container.footer
+      Powered by Heroku, Rails3.1, Twitter Bootstrap
+      Create by @func09, 

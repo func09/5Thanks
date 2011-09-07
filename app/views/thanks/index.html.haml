@@ -1,40 +1,55 @@
 .page-header
   %h1 あなたの感謝の言葉
+  %p あなたは今日までに<b>#{Thank.count}回</b>の感謝を感じました
 
 .row
   .span10
     %dl
       - @thanks.each do |key,thanks|
-        %dt
+        %dt.date
+          %span.count
+            %span.num= thanks.count
+            %span.label thx
           - if key.today?
+            - label_when = "今日"
             %h3 Today
-          - elsif key.yestaday?
-            %h3 Yesterday
           - else
+            - label_when = "この日"
             %h3= key.strftime("%Y/%m/%d")
-          - case 5 - thanks.size
-          - when 1,2
-            %p
-              今日はあと#{5-thanks.size}個の感謝を言おう。
-              = link_to "あとちょっと！", new_thank_path
-          - when 3,4
-            %p
-              今日はあと#{5-thanks.size}個の感謝を言おう。
-              = link_to "もっと！", new_thank_path
-          - when 5
-            %p
-              今日はまだ感謝を言ってないよ。
-              = link_to "何でもいいよ", new_thank_path
-          - else
-            %p
-              今日もいっぱい良いことがあったね！
-              = link_to "もっと感謝したいことはある？", new_thank_path
-      
-        %dd
+        %dd.thanks
           %ol
             - for thank in thanks
               %li
                 =link_to "#{thank.what}へ #{thank.message}"
+          .system-message
+            - if key.today?
+              - case 5 - thanks.size
+              - when 1,2
+                %p
+                  今日はあと#{5-thanks.size}個の感謝を言おう。
+                  = link_to "あとちょっと！", new_thank_path
+              - when 3,4
+                %p
+                  今日はあと#{5-thanks.size}個の感謝を言おう。
+                  = link_to "もっと！", new_thank_path
+              - when 5
+                %p
+                  今日はまだ感謝を言ってないよ。
+                  = link_to "何でもいいよ", new_thank_path
+              - else
+                %p
+                  今日もいっぱい良いことがあったね！
+                  = link_to "もっと感謝したことはある？", new_thank_path
+            - else
+              - case 5 - thanks.size
+              - when 1,2,3,4,5
+                %p
+                  もっと感謝できることがあるはずだよ。
+                  = link_to "思い出してみて！", new_thank_path(:date => key.strftime("%Y%m%d"))
+              - else
+                %p
+                  この日もいっぱい良いことがあったね！
+                  = link_to "もっと感謝したいことはある？", new_thank_path(:date => key.strftime("%Y%m%d"))
   .span6
     %ul
       - for date in @dates

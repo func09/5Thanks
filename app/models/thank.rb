@@ -1,5 +1,7 @@
 class Thank < ActiveRecord::Base
   
+  belongs_to :user
+  
   def self.filter(params)
     thanks = self.where('')
     if params[:date]

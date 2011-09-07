@@ -1,5 +1,9 @@
 .page-header
-  %h1 New thank
+  %h1
+    - if @thank.date_at.today?
+      今日感謝したこと
+    - else
+      #{@thank.date_at.strftime("%Y年%m月%d日")}に感謝したこと
 
 .row
   .span16
