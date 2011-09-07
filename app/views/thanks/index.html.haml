@@ -1,65 +1,81 @@
 .page-header
-  %h1 あなたの感謝の言葉
+  %h1
+    - if @month.this_month?
+      今月のあなたの感謝の言葉
+    - else
+      #{@month.strftime("%Y年%m月")}のあなたの感謝の言葉
   %p
     - unless current_user.thanks.count == 0
       あなたは今日までに<b>#{current_user.thanks.count}回</b>の感謝を感じました
-    - else
-      あなたはまだ感謝をメモしていませんね？
-      %a(href='#{new_thank_path}')こちらからどうぞ！
 
 .row
   .span10
-    %dl
-      - @thanks.each do |date,thanks|
-        %dt.date
-          %span.count
-            %span.num= thanks.count
-            %span.label thx
-          - if date.today?
-            - label_when = "今日"
-            %h3 Today
-          - else
-            - label_when = "この日"
-            %h3= date.strftime("%Y/%m/%d")
-        %dd.thanks
-          %ol
-            - for thank in thanks
-              %li
-                =link_to "#{thank.what}へ #{thank.message}"
-          .system-message
+    - unless @thanks.count > 0
+      %p.empty-message
+        - if @month.end_of_month.future?
+          今月はまだ感謝メモをつけていません。
+          %br
+          = link_to "さぁ、感謝できることをメモしましょう！", new_thank_path
+        - else
+          この月は感謝メモがありませんでした
+    - else
+      %dl
+        - if @month.this_month? and not @thanks.keys.first.today?
+          - @thanks[Date.today] = []
+        - for date in @thanks.keys.sort.reverse
+          - thanks = @thanks[date]
+          %dt.date
+            %span.count
+              %span.num= thanks.count
+              %span.label thx
             - if date.today?
-              - case 5 - thanks.size
-              - when 1,2
-                %p
-                  今日はあと#{5-thanks.size}個の感謝を言おう。
-                  = link_to "あとちょっと！", new_thank_path
-              - when 3,4
-                %p
-                  今日はあと#{5-thanks.size}個の感謝を言おう。
-                  = link_to "もっと！", new_thank_path
-              - when 5
-                %p
-                  今日はまだ感謝を言ってないよ。
-                  = link_to "何でもいいよ", new_thank_path
-              - else
-                %p
-                  今日もいっぱい良いことがあったね！
-                  = link_to "もっと感謝したことはある？", new_thank_path
+              - label_when = "今日"
+              %h3 今日
             - else
-              - case 5 - thanks.size
-              - when 1,2,3,4,5
-                %p
-                  もっと感謝できることがあるはずだよ。
-                  = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
+              - label_when = "この日"
+              %h3= date.strftime("%Y/%m/%d")
+          %dd.thanks
+            %ol
+              - for thank in thanks
+                %li
+                  %b= "#{thank.what}へ"
+                  %br
+                  = thank.message
+            .system-message
+              - if date.today?
+                - case 5 - thanks.size
+                - when 1,2
+                  %p
+                    今日はあと#{5-thanks.size}個の感謝を言おう。
+                    = link_to "あとちょっと！", new_thank_path
+                - when 3,4
+                  %p
+                    今日はあと#{5-thanks.size}個の感謝を言おう。
+                    = link_to "もっと！", new_thank_path
+                - when 5
+                  %p
+                    今日はまだ感謝を言ってないよ。
+                    = link_to "ちょっとした事でいいんだよ", new_thank_path
+                - else
+                  %p
+                    今日もいっぱい良いことがあったね！
+                    = link_to "もっと感謝したことはある？", new_thank_path
               - else
-                %p
-                  この日もいっぱい良いことがあったね！
-                  = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
+                - case 5 - thanks.size
+                - when 1,2,3,4,5
+                  %p
+                    もっと感謝できることがあるはずだよ。
+                    = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
+                - else
+                  %p
+                    この日もいっぱい良いことがあったね！
+                    = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
+      .pagination
+        =# paginate @thanks
   .span6
     %ul
-      - for date in @dates
+      - for month in @months
         %li
-          = link_to date.first.strftime("%Y/%m/%d"), thanks_path(:date => date.first.strftime("%Y%m%d"))
-          （#{date.last}）
+          = link_to month, thanks_path(:m => month)
       
 

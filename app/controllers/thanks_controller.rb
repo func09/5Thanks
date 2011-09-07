@@ -4,12 +4,19 @@ class ThanksController < ApplicationController
   # GET /thanks
   # GET /thanks.json
   def index
-    @dates = current_user.thanks.order('date_at DESC').group(:date_at).count
-    @thanks = current_user.thanks.filter(params).order('date_at DESC').group_by{|t| t.date_at}
+    if params[:m]
+      @month = Date.parse(params[:m].concat('-01')).beginning_of_month if params[:m]
+    else
+      @month = Date.today.beginning_of_month
+    end
+    @months = ((Date.parse('2011-09-07'))..(Date.today)).to_a.group_by{|d| d.strftime('%Y-%m')}.keys
+    @thanks =  current_user.thanks
+                 .where(:date_at => (@month.beginning_of_month)..(@month.end_of_month))
+                 .order('date_at DESC')
+                 .group_by{|t| t.date_at}
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @thanks }
     end
   end
 

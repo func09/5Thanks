@@ -1,3 +1,12 @@
+.thanks-index-page {
+  p.empty-message {
+    padding: 60px 0;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 150%;
+  }
+}
+
 dl {
   dt.date {
     position: relative;
@@ -30,5 +39,8 @@ dl {
   dd.thanks {
     border-bottom: 1px dashed #CCC;
     margin-bottom: 10px;
+  }
+  dt.more {
+    a.btn { width: 550px; text-align: center; }
   }
 }
