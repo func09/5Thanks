@@ -34,4 +34,5 @@
     %p これまで#{Thank.count}つの感謝がストックされました
     %p #{User.count}人が5Thanksを利用しています。
     %p
-      %a.btn.primary.xlarge ユーザー登録して感謝の気持ちをストックし始める
+      = link_to 'ユーザー登録して感謝の気持ちをストックし始める', new_user_registration_path, :class => 'btn primary xlarge'
+        
