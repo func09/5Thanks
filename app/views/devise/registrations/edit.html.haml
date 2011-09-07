@@ -1,0 +1,33 @@
+.page-header
+  %h2 設定
+
+.row
+  .span10
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      %fieldset
+        .clearfix
+          = f.label :email
+          .input
+            = f.email_field :email
+        .clearfix
+          = f.label :password
+          .input
+            = f.password_field :password
+        .clearfix
+          = f.label :password_confirmation
+          .input
+            = f.password_field :password_confirmation
+        .clearfix
+          = f.label :current_password
+          .input
+            = f.password_field :current_password
+            .help-block we need your current password to confirm your changes
+        .actions
+          = f.submit "更新する", :class => 'btn primary'
+    
+  .span6
+    %h3 退会
+    %p
+      = link_to "このアカウントを削除する", registration_path(resource_name), :confirm => "お気に召さずにごめんなさい。\n退会するとあなたの#{current_user.thanks.count}つの感謝がシステム上から消えてしまいます。\nでもあなたの心に残っているのでよろしいですよね？", :method => :delete
+

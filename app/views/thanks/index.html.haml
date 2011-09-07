@@ -1,28 +1,33 @@
 .page-header
   %h1 あなたの感謝の言葉
-  %p あなたは今日までに<b>#{Thank.count}回</b>の感謝を感じました
+  %p
+    - unless current_user.thanks.count == 0
+      あなたは今日までに<b>#{current_user.thanks.count}回</b>の感謝を感じました
+    - else
+      あなたはまだ感謝をメモしていませんね？
+      %a(href='#{new_thank_path}')こちらからどうぞ！
 
 .row
   .span10
     %dl
-      - @thanks.each do |key,thanks|
+      - @thanks.each do |date,thanks|
         %dt.date
           %span.count
             %span.num= thanks.count
             %span.label thx
-          - if key.today?
+          - if date.today?
             - label_when = "今日"
             %h3 Today
           - else
             - label_when = "この日"
-            %h3= key.strftime("%Y/%m/%d")
+            %h3= date.strftime("%Y/%m/%d")
         %dd.thanks
           %ol
             - for thank in thanks
               %li
                 =link_to "#{thank.what}へ #{thank.message}"
           .system-message
-            - if key.today?
+            - if date.today?
               - case 5 - thanks.size
               - when 1,2
                 %p
@@ -45,11 +50,11 @@
               - when 1,2,3,4,5
                 %p
                   もっと感謝できることがあるはずだよ。
-                  = link_to "思い出してみて！", new_thank_path(:date => key.strftime("%Y%m%d"))
+                  = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
               - else
                 %p
                   この日もいっぱい良いことがあったね！
-                  = link_to "もっと感謝したいことはある？", new_thank_path(:date => key.strftime("%Y%m%d"))
+                  = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
   .span6
     %ul
       - for date in @dates
