@@ -3,7 +3,7 @@
   %p 
     5Thanksは、毎日５つの感謝できることをメモして、ポジティブに生きたい人のためのツールです。
 .row
-  .span10
+  .span9
     
     %h2 5Thanksについて
     %p
@@ -30,9 +30,13 @@
       %br
       共有するのに抵抗がある人は是非5Thanksをご利用ください。
         
-  .span6
+  .span7
     %p これまで#{Thank.count}つの感謝がストックされました
     %p #{User.count}人が5Thanksを利用しています。
     %p
       = link_to 'ユーザー登録して感謝の気持ちをストックし始める', new_user_registration_path, :class => 'btn primary xlarge'
         
+    .share
+      <a href="http://b.hatena.ne.jp/entry/#{root_url}" class="hatena-bookmark-button" data-hatena-bookmark-title="5Thanks - 毎日5つの感謝をメモするサービス" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="func09" data-lang="ja">ツイート</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      <iframe src="http://www.facebook.com/plugins/like.php?app_id=172862122787841&amp;href=#{URI.encode(root_url)}send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:140px; height:21px;" allowTransparency="true"></iframe>
