@@ -1,0 +1,25 @@
+= form_for @thank do |f|
+  -if @thank.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@thank.errors.count, "error")} prohibited this thank from being saved:"
+      %ul
+        - @thank.errors.full_messages.each do |msg|
+          %li= msg
+  
+  .fieldset
+    .clearfix
+      %label 誰 or 何に？
+      .input
+        = f.text_field :what
+        へ
+    .clearfix
+      %label 感謝の言葉
+      .input
+        = f.text_area :message, :size => '70x2', :class => 'xxlarge'
+    .clearfix(style='display:none;')
+      %label いつの感謝？
+      .input
+        = f.date_select :date_at
+  
+  .actions
+    = f.submit '感謝の言葉を貯金する', :class => 'btn primary'

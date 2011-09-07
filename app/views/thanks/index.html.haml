@@ -1,0 +1,45 @@
+.page-header
+  %h1 あなたの感謝の言葉
+
+.row
+  .span10
+    %dl
+      - @thanks.each do |key,thanks|
+        %dt
+          - if key.today?
+            %h3 Today
+          - elsif key.yestaday?
+            %h3 Yesterday
+          - else
+            %h3= key.strftime("%Y/%m/%d")
+          - case 5 - thanks.size
+          - when 1,2
+            %p
+              今日はあと#{5-thanks.size}個の感謝を言おう。
+              = link_to "あとちょっと！", new_thank_path
+          - when 3,4
+            %p
+              今日はあと#{5-thanks.size}個の感謝を言おう。
+              = link_to "もっと！", new_thank_path
+          - when 5
+            %p
+              今日はまだ感謝を言ってないよ。
+              = link_to "何でもいいよ", new_thank_path
+          - else
+            %p
+              今日もいっぱい良いことがあったね！
+              = link_to "もっと感謝したいことはある？", new_thank_path
+      
+        %dd
+          %ol
+            - for thank in thanks
+              %li
+                =link_to "#{thank.what}へ #{thank.message}"
+  .span6
+    %ul
+      - for date in @dates
+        %li
+          = link_to date.first.strftime("%Y/%m/%d"), thanks_path(:date => date.first.strftime("%Y%m%d"))
+          （#{date.last}）
+      
+

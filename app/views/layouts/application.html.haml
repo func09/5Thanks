@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title
+      = yield(:title) || "5Thanks"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag 'http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css'
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    = yield(:head)
+
+  %body(class='#{controller_name}-#{action_name}-page')
+    
+    .topbar
+      .fill
+        .container
+          %h3
+            %a(href='/')
+              5Thanks
+          %ul
+            %li= link_to 'あなたの感謝', thanks_path
+            %li= link_to '新しい感謝', new_thank_path
+    
+    .container(style='margin-top: 40px; padding-top: 10px')
+      - flash.each do |name, msg|
+        .alert-message.block-message(class='#{name}')= msg
+    
+    .container
+      .pageContent
+        = yield
