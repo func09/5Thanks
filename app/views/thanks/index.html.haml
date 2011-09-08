@@ -1,3 +1,8 @@
+- if @month.this_month?
+  - title "今月のあなたの感謝の言葉 - 5Thanks"
+- else
+  - title "#{@month.strftime("%Y年%m月")}のあなたの感謝の言葉 - 5Thanks"
+
 .page-header
   %h1
     - if @month.this_month?
