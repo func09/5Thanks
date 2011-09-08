@@ -18,6 +18,8 @@ ja:
       # failure: 'Could not authorize you from %{kind} because "%{reason}".'
       failure: '%{kind} からの認証に失敗しました。 理由： "%{reason}".'
     failure:
+      already_authenticated: 'すでにログインしています。'
+      # already_authenticated: 'You are already signed in.'
       unauthenticated: 'ログインしてください。'
 #      unauthenticated: 'You need to sign in or sign up before continuing.'
       unconfirmed: '本登録を行ってください。'
