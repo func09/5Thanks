@@ -42,24 +42,24 @@
                   %span.destroy(style='display:none;')
                     = link_to 'x', thank_path(thank,:format => :json), :remote => true, :class => 'btn-destroy', :method => :delete
                   %br
-                  = thank.message
+                  %p.message= thank.message
             .system-message
               - if date.today?
                 %p.empty-thanks-message(style='display:none;')
-                  今日はまだ感謝を言ってないよ。
+                  今日はまだ感謝をメモしてないよ。
                   = link_to "ちょっとした事でいいんだよ", new_thank_path
                 %p.full-thanks-message(style='display:none;')
                   今日もいっぱい良いことがあったね！
                   = link_to "もっと感謝したことはある？", new_thank_path
                 %p.notyet-thanks-message(style='display:none;')
-                  今日はあと<span class='num'>#{5-thanks.size}</span>個の感謝を言おう。
+                  今日はあと<span class='num'>#{5-thanks.size}</span>個の感謝をメモろう。
                   = link_to "あとちょっと！", new_thank_path
               - else
                 %p.full-thanks-message(style='display:none;')
-                  この日もいっぱい良いことがあったね！
+                  いっぱい良いことがあったね！
                   = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
                 %p.notyet-thanks-message(style='display:none;')
-                  もっと感謝できることがあるはずだよ。
+                  もう少し感謝のメモを書こう。
                   = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
   .span6
     %ul

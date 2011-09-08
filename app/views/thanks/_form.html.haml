@@ -12,10 +12,15 @@
       .input
         = f.text_field :what
         へ
+        .help-block 例：両親、子ども、先生、友人、お天気、音楽 etc
     .clearfix
       %label 感謝の言葉
       .input
         = f.text_area :message, :size => '70x2', :class => 'xxlarge'
+        .help-block 
+          自分の人生でありがたいと思うことはなんですか？
+          %br
+          書きながら思い浮かべてみよう。
     .clearfix(style='display:none;')
       %label いつの感謝？
       .input

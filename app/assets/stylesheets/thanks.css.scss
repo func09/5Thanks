@@ -48,6 +48,8 @@ dl {
       li {
         margin-bottom: 10px;
         &:hover { background: #EEE; }
+        b { font-size: 15px;}
+        p.message { font-size: 13px; }
       }
     }
   }

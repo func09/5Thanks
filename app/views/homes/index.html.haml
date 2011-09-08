@@ -7,34 +7,35 @@
     
     %h2 5Thanksについて
     %p
-      書籍「ハーバードの人生を変える授業」の中にある
+      書籍「<a href="http://www.amazon.co.jp/gp/product/4479793054/ref=as_li_ss_tl?ie=UTF8&tag=func090b-22&linkCode=as2&camp=247&creative=7399&creativeASIN=4479793054">ハーバードの人生を変える授業</a><img src="http://www.assoc-amazon.jp/e/ir?t=&l=as2&o=9&a=4479793054" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />」の中にある
     %blockquote
       ちょっとした事でもいいので、毎日感謝できることを５つ書く
     %p
-      を実践するためのツールです。本によれば、これを続けた人は人生を肯定的に評価できるようになり、幸福感が高くなり、ポジティブな気分を味わうようになったそうです。
+      を実践するためのツールです。「<a href="http://www.amazon.co.jp/gp/product/4479793054/ref=as_li_ss_tl?ie=UTF8&tag=func090b-22&linkCode=as2&camp=247&creative=7399&creativeASIN=4479793054">ハーバードの人生を変える授業</a><img src="http://www.assoc-amazon.jp/e/ir?t=&l=as2&o=9&a=4479793054" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />」によれば、これを続けた人は人生を肯定的に評価できるようになり、幸福感が高くなり、ポジティブな気分を味わうようになったそうです。
     
     %h3 サービスの特徴
     %ol
       %li
-        %b 感謝の気持ちが見れるのは自分だけ
+        %b 簡単なメモ登録
         %p 
-          感謝の気持ちをストックしても、それが他の人から見られることはありません。
+          誰、何に対して、どんな感謝をしたのか書くだけのシンプルなツールです。
+          %br
+          = image_tag 'capture-2.png'
       %li
-        %b 感謝の気持ちが見れるのは自分だけ
+        %b 振り返りやすい
         %p 
-          感謝の気持ちをストックしても、それが他の人から見られることはありません。
-    
-    %h3 感謝の気持ちをみんなに共有したい人は
-    %p
-      <a href='http://www.kayac.com/'>面白法人KAYAC</a>さんの<a href='http://thanks.kayac.com/ja/top'>THANKS</a>という素晴らしいサービスがあります。5ThanksはTHANKSが無ければ生まれることはなかったでしょう。
-      %br
-      共有するのに抵抗がある人は是非5Thanksをご利用ください。
+          メモは日毎に整理されて、過去のメモを読み返しやすいです。
+          = image_tag 'capture-1.png'
+      %li
+        %b プライベートなメモ
+        %p 
+          感謝のメモは他の人から見られることはありません。
         
   .span7
-    %p これまで#{Thank.count}つの感謝がストックされました
+    %p これまで#{Thank.count}つの感謝がメモされました
     %p #{User.count}人が5Thanksを利用しています。
     %p
-      = link_to 'ユーザー登録して感謝の気持ちをストックし始める', new_user_registration_path, :class => 'btn primary xlarge'
+      = link_to 'ユーザー登録して感謝の気持ちをメモし始める', new_user_registration_path, :class => 'btn primary xlarge'
         
     .share
       <a href="http://b.hatena.ne.jp/entry/#{root_url}" class="hatena-bookmark-button" data-hatena-bookmark-title="5Thanks - 毎日5つの感謝をメモするサービス" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
