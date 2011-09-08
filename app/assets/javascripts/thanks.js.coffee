@@ -1,4 +1,19 @@
 $ ->
+  if $('.thanks-new-page').is(':visible')
+    
+    # 入力フォーム監視
+    observeInputs = (e)->
+      values = $('#thank_what,#thank_message').map (index,node)-> $(node).val()
+      if _.all(values, (value)-> value != '')
+        $('input[name=commit]').removeAttr('disabled')
+      else
+        $('input[name=commit]').attr('disabled','disabled')
+    observeInputs()
+    $('#thank_what,#thank_message')
+      .bind('keyup', observeInputs)
+      .bind('change', observeInputs)
+    
+  
   if $('.thanks-index-page').is(':visible')
     
     $('.thanks li')
@@ -8,30 +23,6 @@ $ ->
       .bind('mouseout', (e)->
         $(this).find('.destroy').hide()
       )
-    
-    # # Thank Create
-    # $('form#new_thank')
-    #   .bind('submit', (e)-> 
-    #     $('#thank_what').val('')
-    #     $('#thank_message').val('')
-    #   )
-    #   .bind('ajax:complete', (e, response, status)->
-    #     console.log(e)
-    #     console.log(response)
-    #     console.log(data)
-    #   )
-    # 
-    # # 入力フォーム監視
-    # observeInputs = (e)->
-    #   values = $('#thank_what,#thank_message').map (index,node)-> $(node).val()
-    #   if _.all(values, (value)-> value != '')
-    #     $('input[name=commit]').removeAttr('disabled')
-    #   else
-    #     $('input[name=commit]').attr('disabled','disabled')
-    # observeInputs()
-    # $('#thank_what,#thank_message')
-    #   .bind('keyup', observeInputs)
-    #   .bind('change', observeInputs)
     
     # Thank 削除
     $('.btn-destroy')

@@ -9,7 +9,9 @@ class ThanksController < ApplicationController
     else
       @month = Date.today.beginning_of_month
     end
-    @months = ((Date.parse('2011-09-07'))..(Date.today)).to_a.group_by{|d| d.strftime('%Y-%m')}.keys
+    # メモした月リストを作成
+    @months = current_user.thanks.group(:date_at).count
+                .keys.group_by{|key,value| key.strftime('%Y-%m') }.keys.map{|d| Date.parse("#{d}-01") }.sort.reverse
     @thanks =  current_user.thanks
                  .where(:date_at => (@month.beginning_of_month)..(@month.end_of_month))
                  .order('date_at DESC')

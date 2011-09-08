@@ -93,9 +93,9 @@
                     = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
   .span6
     %ul
-      - for month in @months
+      - for date in @months
         %li
-          = link_to month, thanks_path(:m => month)
+          = link_to date.strftime('%Y年%m月'), thanks_path(:m => date.strftime('%Y-%m'))
   
 
           
