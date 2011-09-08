@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
+//= require ICanHaz.min
 //= require_tree .

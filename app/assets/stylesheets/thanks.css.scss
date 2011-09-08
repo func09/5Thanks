@@ -12,7 +12,12 @@ dl {
     position: relative;
     padding-left: 60px;
     min-height: 50px;
-    h3 { font-size: 25px; }
+    time {
+      display: block;
+      font-size: 30px;
+      line-height: 30px;
+      padding: 4px;      
+    }
     .count {
       position: absolute;
       display: block;
@@ -39,8 +44,11 @@ dl {
   dd.thanks {
     border-bottom: 1px dashed #CCC;
     margin-bottom: 10px;
-  }
-  dt.more {
-    a.btn { width: 550px; text-align: center; }
+    ol {
+      li {
+        margin-bottom: 10px;
+        &:hover { background: #EEE; }
+      }
+    }
   }
 }
