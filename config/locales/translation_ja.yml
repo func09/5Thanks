@@ -8,7 +8,7 @@ ja:
       user:
         email: "メール"  #g
         encrypted_password: "暗号化されたパスワード"  #g
-        reset_password_token: "パスワードのトークンをリセットします。"  #g
+        reset_password_token: "パスワードリセットトークン"  #g
         reset_password_sent_at: "で送信されたパスワードをリセットする"  #g
         remember_created_at: "で作成した覚えている"  #g
         current_sign_in_at: "での現在の記号"  #g
