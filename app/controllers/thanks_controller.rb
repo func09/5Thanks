@@ -94,7 +94,7 @@ class ThanksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to thanks_url }
-      format.json { head :ok }
+      format.json { render json: @thank, status: :created }
     end
   end
 end

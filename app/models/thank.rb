@@ -13,4 +13,17 @@ class Thank < ActiveRecord::Base
     thanks
   end
   
+  # def to_json_with_ext
+  #   {
+  #     :id => self.id,
+  #     :date_at => self.date_at,
+  #     :what => self.what,
+  #     :message => self.message,
+  #     :user_id => self.user_id,
+  #     # :total_count => Thank.where(:user_id => self.user_id).count,
+  #     # :date_count 
+  #   }.to_json
+  # end
+  # alias_method_chain :to_json, :ext
+  
 end

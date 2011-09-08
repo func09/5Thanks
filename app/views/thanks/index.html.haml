@@ -24,7 +24,7 @@
           - @thanks[Date.today] = []
         - for date in @thanks.keys.sort.reverse
           - thanks = @thanks[date]
-          %dt.date
+          %dt.date(data-date='#{date.strftime("%Y-%m-%d")}')
             %span.count
               %span.num= thanks.count
               %span.label thx
@@ -34,52 +34,39 @@
             - else
               - label_when = "この日"
               %time(datetime='#{date.strftime("%Y-%m-%d")}')= date.strftime("%Y/%m/%d")
-          %dd.thanks
+          %dd.thanks(data-date='#{date.strftime("%Y-%m-%d")}')
             %ol
               - for thank in thanks
                 %li(data-thank-id='#{thank.id}')
                   %b= "#{thank.what}へ"
                   %span.destroy(style='display:none;')
-                    %a.btn-destroy(href='#') x
+                    = link_to 'x', thank_path(thank,:format => :json), :remote => true, :class => 'btn-destroy', :method => :delete
                   %br
                   = thank.message
             .system-message
               - if date.today?
-                - case 5 - thanks.size
-                - when 1,2
-                  %p
-                    今日はあと#{5-thanks.size}個の感謝を言おう。
-                    = link_to "あとちょっと！", new_thank_path
-                - when 3,4
-                  %p
-                    今日はあと#{5-thanks.size}個の感謝を言おう。
-                    = link_to "もっと！", new_thank_path
-                - when 5
-                  %p
-                    今日はまだ感謝を言ってないよ。
-                    = link_to "ちょっとした事でいいんだよ", new_thank_path
-                - else
-                  %p
-                    今日もいっぱい良いことがあったね！
-                    = link_to "もっと感謝したことはある？", new_thank_path
+                %p.empty-thanks-message(style='display:none;')
+                  今日はまだ感謝を言ってないよ。
+                  = link_to "ちょっとした事でいいんだよ", new_thank_path
+                %p.full-thanks-message(style='display:none;')
+                  今日もいっぱい良いことがあったね！
+                  = link_to "もっと感謝したことはある？", new_thank_path
+                %p.notyet-thanks-message(style='display:none;')
+                  今日はあと<span class='num'>#{5-thanks.size}</span>個の感謝を言おう。
+                  = link_to "あとちょっと！", new_thank_path
               - else
-                - case 5 - thanks.size
-                - when 1,2,3,4,5
-                  %p
-                    もっと感謝できることがあるはずだよ。
-                    = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
-                - else
-                  %p
-                    この日もいっぱい良いことがあったね！
-                    = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
+                %p.full-thanks-message(style='display:none;')
+                  この日もいっぱい良いことがあったね！
+                  = link_to "もっと感謝したいことはある？", new_thank_path(:date => date.strftime("%Y%m%d"))
+                %p.notyet-thanks-message(style='display:none;')
+                  もっと感謝できることがあるはずだよ。
+                  = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
   .span6
     %ul
       - for date in @months
         %li
           = link_to date.strftime('%Y年%m月'), thanks_path(:m => date.strftime('%Y-%m'))
   
-
-          
           
           
           

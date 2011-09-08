@@ -24,13 +24,29 @@ $ ->
         $(this).find('.destroy').hide()
       )
     
+    updateSystemMessage = (thanksNode)->
+      count = $(thanksNode).find('li:visible').size()
+      $(thanksNode).find('.system-message p').hide()
+      if count == 0
+        $(thanksNode).find('.empty-thanks-message').show()
+      else if count >= 5
+        $(thanksNode).find('.full-thanks-message').show()
+      else
+        $(thanksNode).find('.notyet-thanks-message').show()
+        $(thanksNode).find('.notyet-thanks-message .num').text(5 - count)
+    
+    $('dd.thanks').each((i,node)->updateSystemMessage($(node)))
+    
     # Thank 削除
     $('.btn-destroy')
-      .bind('click', (e)->
-        e.preventDefault()
-        parent = $(this).parents('li')
-        parent.fadeOut()
-        $.ajax
-          url: "/thanks/#{parent.data('thank-id')}"
-          type: 'DELETE'
+      .bind('ajax:success',(e,res,status)->
+        console.log(res)
+        if status == 'success'
+          thank = $(this).parents('li')
+          thank.fadeOut(1000, ()->
+            date = thank.parents('dd').data('date')
+            count = $("dd[data-date=#{date}] li:visible").size()
+            $("dt[data-date=#{date}]").find('.num').text(count)
+            updateSystemMessage($("dd[data-date=#{date}]"))
+          )
       )
