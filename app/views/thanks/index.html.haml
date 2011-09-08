@@ -6,7 +6,7 @@
       #{@month.strftime("%Y年%m月")}のあなたの感謝の言葉
   %p
     - unless current_user.thanks.count == 0
-      あなたは今日までに<b>#{current_user.thanks.count}回</b>の感謝を感じました
+      あなたは今日までに<b>#{current_user.thanks.count}個</b>の感謝メモを残しました
 
 .row
   .span10
