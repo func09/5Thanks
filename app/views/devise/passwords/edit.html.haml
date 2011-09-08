@@ -4,7 +4,12 @@
 .row
   .span10
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-      = devise_error_messages!
+      -if resource.errors.any?
+        .alert-message.block-message.error
+          %h3= "#{resource.errors.count}つのエラーのため保存できませんでした。"
+          %ul
+            - resource.errors.full_messages.each do |msg|
+              %li= msg
       = f.hidden_field :reset_password_token
       
       %fieldset

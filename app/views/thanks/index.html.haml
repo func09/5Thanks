@@ -10,25 +10,6 @@
 
 .row
   .span10
-    / .new-form
-    /   = form_for Thank.new, :format => :json, :remote => true, :html => { :class => 'form-stacked' } do |f|
-    /     .fieldset
-    /       .clearfix
-    /         %label 誰 or 何に？
-    /         .input
-    /           = f.text_field :what
-    /           へ
-    /       .clearfix
-    /         %label 感謝の言葉
-    /         .input
-    /           = f.text_area :message, :size => '70x2', :class => 'xxlarge'
-    /       .clearfix(style='display:none;')
-    /         %label いつの感謝？
-    /         .input
-    /           = f.date_select :date_at
-    /       .clearfix
-    /         .input
-    /           = f.submit '感謝の言葉を貯金する', :class => 'btn primary'
     - unless @thanks.count > 0
       %p.empty-message
         - if @month.end_of_month.future?

@@ -1,6 +1,8 @@
 class Thank < ActiveRecord::Base
   
   belongs_to :user
+  validates :what, :length => { :in => 1..20 }
+  validates :message, :length => { :in => 1..140 }
   
   def self.filter(params)
     thanks = self.where('')

@@ -32,7 +32,7 @@
     
     .container(style='margin-top: 40px; padding-top: 10px')
       - flash.each do |name, msg|
-        .alert-message.block-message(class='#{name}')= msg
+        .alert-message.small(class='#{name}')= msg
     
     .container
       .pageContent
@@ -43,8 +43,8 @@
       Create by @func09, 
 
 :javascript
-  if($('.alert-message').is(':visible')){
+  if($('.alert-message.small').is(':visible')){
     setTimeout(function(){
-      $('.alert-message').fadeOut()
+      $('.alert-message.small').fadeOut()
     }, 3000);
   }

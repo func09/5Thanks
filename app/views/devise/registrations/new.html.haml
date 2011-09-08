@@ -4,7 +4,12 @@
 .row
   .span10
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      = devise_error_messages!
+      -if resource.errors.any?
+        .alert-message.block-message.error
+          %h3= "#{resource.errors.count}つのエラーのため保存できませんでした。"
+          %ul
+            - resource.errors.full_messages.each do |msg|
+              %li= msg
   
       %fieldset
         .clearfix
@@ -12,9 +17,10 @@
           .input
             = f.text_field :email
         .clearfix
-          = f.label :email, 'ユーザー名'
+          = f.label :username, 'ユーザー名'
           .input
             = f.text_field :username
+            %span.help-inline 半角英数字3文字〜15文字まで。
         .clearfix
           = f.label :password, 'パスワード'
           .input
@@ -24,6 +30,6 @@
           .input
             = f.password_field :password_confirmation
         .actions
-          = f.submit "Sign up", :class => 'btn primary'
+          = f.submit "登録", :class => 'btn primary'
   .span6
     = render :partial => "devise/shared/links"

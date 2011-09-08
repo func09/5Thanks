@@ -4,7 +4,12 @@
 .row
   .span10
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-      = devise_error_messages!
+      -if resource.errors.any?
+        .alert-message.block-message.error
+          %h3= "#{resource.errors.count}つのエラーのため保存できませんでした。"
+          %ul
+            - resource.errors.full_messages.each do |msg|
+              %li= msg
       %fieldset
         .clearfix
           = f.label :email
@@ -22,7 +27,7 @@
           = f.label :current_password
           .input
             = f.password_field :current_password
-            .help-block we need your current password to confirm your changes
+            .help-block 設定を変更するためには現在のパスワードが必要です。
         .actions
           = f.submit "更新する", :class => 'btn primary'
     

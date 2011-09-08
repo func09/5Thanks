@@ -17,9 +17,12 @@ ja:
         last_sign_in_ip: "IPの最後の記号"  #g
         username: "ユーザー名"  #g
         thanks: "感謝"  #g
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        current_password: "現在のパスワード"
 
       thank:
-        what: "どのような"  #g
+        what: "誰 or 何に？"  #g
         message: "メッセージ"  #g
-        date_at: "日付で"  #g
+        date_at: "日付"  #g
         user: "ユーザー"  #g

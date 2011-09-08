@@ -1,7 +1,7 @@
 = form_for @thank do |f|
   -if @thank.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@thank.errors.count, "error")} prohibited this thank from being saved:"
+    .alert-message.block-message.error
+      %h3= "#{pluralize(@thank.errors.count, "つのエラー")}のため保存できませんでした。"
       %ul
         - @thank.errors.full_messages.each do |msg|
           %li= msg
@@ -22,4 +22,4 @@
         = f.date_select :date_at
     .clearfix
       .input
-        = f.submit '感謝の言葉をメモする', :class => 'btn primary'
+        = f.submit '感謝をメモする', :class => 'btn primary'
