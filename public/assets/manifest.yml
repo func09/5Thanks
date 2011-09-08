@@ -1,6 +1,9 @@
 --- 
+capture-1.png: capture-1-4ebb65f5c8c19cc19aa0c1047fb4604a.png
+capture-2.png: capture-2-828313ace750a6ff45b8035208cb3353.png
 rails.png: rails-bd9ad5a560b5a3a7be0808c5cd76a798.png
+ICanHaz.min.js: ICanHaz-b4b81e9871b46f7e192a5e1d3182010b.min.js
 jquery-ui.min.js: jquery-ui-7e33882a28fc84ad0e0e47e46cbf901c.min.js
 jquery.min.js: jquery-8a50feed8d29566738ad005e19fe1c2d.min.js
-application.js: application-645a8b4d274aac42bd12222aa417167d.js
-application.css: application-eca11a164e7a94a5e569b5696333d218.css
+application.js: application-d93c351b259a97f5602cf0828502bac4.js
+application.css: application-1256e2bab720fa68d08bf74acc61842c.css
