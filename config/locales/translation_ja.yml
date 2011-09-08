@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"  #g
+      thank: "ありがとうございます"  #g
+
+    attributes:
+      user:
+        email: "メール"  #g
+        encrypted_password: "暗号化されたパスワード"  #g
+        reset_password_token: "パスワードのトークンをリセットします。"  #g
+        reset_password_sent_at: "で送信されたパスワードをリセットする"  #g
+        remember_created_at: "で作成した覚えている"  #g
+        current_sign_in_at: "での現在の記号"  #g
+        last_sign_in_at: "での最後の記号"  #g
+        current_sign_in_ip: "IPの現在の記号"  #g
+        last_sign_in_ip: "IPの最後の記号"  #g
+        username: "ユーザー名"  #g
+        thanks: "感謝"  #g
+
+      thank:
+        what: "どのような"  #g
+        message: "メッセージ"  #g
+        date_at: "日付で"  #g
+        user: "ユーザー"  #g

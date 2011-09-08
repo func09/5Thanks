@@ -41,3 +41,10 @@
     .container.footer
       Powered by Heroku, Rails3.1, Twitter Bootstrap
       Create by @func09, 
+
+:javascript
+  if($('.alert-message').is(':visible')){
+    setTimeout(function(){
+      $('.alert-message').fadeOut()
+    }, 3000);
+  }

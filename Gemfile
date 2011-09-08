@@ -24,6 +24,7 @@ gem 'devise'
 gem 'haml-rails'
 gem 'kaminari'
 gem 'jquery-rails'
+gem 'i18n_generators'
 
 # Use unicorn as the web server
 # gem 'unicorn'
