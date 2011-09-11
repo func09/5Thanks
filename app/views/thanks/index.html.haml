@@ -67,6 +67,8 @@
                   もう少し感謝のメモを書こう。
                   = link_to "思い出してみて！", new_thank_path(:date => date.strftime("%Y%m%d"))
   .span6
+    %p
+      <a href="http://www.dff.jp" target="_blank"><img src="http://bnr.dff.jp/pix/dffbanner200909_01_171x70.gif" alt="クリックで救える命がある。" width="171" height="70" border="0"></a>
     %ul
       - for date in @months
         %li
